@@ -1,0 +1,12 @@
+{
+  "name": "nb-smartfit-student-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unofficial student NB SmartFit ecommerce demo",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
