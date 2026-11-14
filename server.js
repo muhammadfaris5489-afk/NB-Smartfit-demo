@@ -21,7 +21,7 @@ async function readJSON(req){let raw='';for await(const chunk of req){raw+=chunk
 async function answer(prompt){
  const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),20000);
  try{
-  const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY},body:JSON.stringify({model:MODEL,instructions,input:prompt,max_output_tokens:260,store:false}),signal:controller.signal});
+  const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY},body:JSON.stringify({model:MODEL,instructions:instructions,input:prompt,max_output_tokens:260,store:false}),signal:controller.signal});
   const data=await response.json().catch(()=>({}));
   if(!response.ok){console.error('AI API status',response.status);throw Error('OpenAI API unavailable or billing not configured')}
   const output=(data.output||[]).flatMap(v=>v.content||[]).filter(v=>v.type==='output_text').map(v=>v.text).join('').trim();
